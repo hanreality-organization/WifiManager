@@ -48,7 +48,7 @@ public class WifiManager extends BaseWifiManager {
             return true;
         int networkId = WifiHelper.configOrCreateWifi(manager, wifi, password);
         boolean ret = manager.enableNetwork(networkId, true);
-        modifyWifi(wifi.SSID(), "开始连接...");
+        modifyWifi(wifi.SSID(), context.getString(R.string.wifi_tip_11));
         return ret;
     }
 
@@ -56,14 +56,14 @@ public class WifiManager extends BaseWifiManager {
     public boolean connectSavedWifi(IWifi wifi) {
         int networkId = WifiHelper.configOrCreateWifi(manager, wifi, null);
         boolean ret = manager.enableNetwork(networkId, true);
-        modifyWifi(wifi.SSID(), "开始连接...");
+        modifyWifi(wifi.SSID(), context.getString(R.string.wifi_tip_11));
         return ret;
     }
 
     @Override
     public boolean connectOpenWifi(IWifi wifi) {
         boolean ret = connectEncryptWifi(wifi, null);
-        modifyWifi(wifi.SSID(), "开始连接...");
+        modifyWifi(wifi.SSID(), context.getString(R.string.wifi_tip_11));
         return ret;
     }
 

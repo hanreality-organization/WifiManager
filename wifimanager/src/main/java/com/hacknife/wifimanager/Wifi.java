@@ -1,10 +1,12 @@
 package com.hacknife.wifimanager;
 
+import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.text.TextUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 public class Wifi implements IWifi {
     protected String name;
@@ -20,7 +22,8 @@ public class Wifi implements IWifi {
     protected int level;
 
 
-    public static IWifi create(ScanResult result, List<WifiConfiguration> configurations, String connectedSSID, int ipAddress) {
+    public static IWifi create(Context context,
+                               ScanResult result, List<WifiConfiguration> configurations, String connectedSSID, int ipAddress) {
         if (TextUtils.isEmpty(result.SSID))
             return null;
         Wifi wifi = new Wifi();
@@ -34,7 +37,8 @@ public class Wifi implements IWifi {
         wifi.isEncrypt = true;
         wifi.encryption = "";
         wifi.level = result.level;
-        wifi.ip = wifi.isConnected ? String.format("%d.%d.%d.%d", (ipAddress & 0xff), (ipAddress >> 8 & 0xff), (ipAddress >> 16 & 0xff), (ipAddress >> 24 & 0xff)) : "";
+        wifi.ip = wifi.isConnected ? String.format(Locale.getDefault(), "%d.%d.%d.%d", (ipAddress & 0xff),
+                (ipAddress >> 8 & 0xff), (ipAddress >> 16 & 0xff), (ipAddress >> 24 & 0xff)) : "";
         if (wifi.capabilities.toUpperCase().contains("WPA2-PSK") && wifi.capabilities.toUpperCase().contains("WPA-PSK")) {
             wifi.encryption = "WPA/WPA2";
         } else if (wifi.capabilities.toUpperCase().contains("WPA-PSK")) {
@@ -52,10 +56,10 @@ public class Wifi implements IWifi {
             }
         }
         if (wifi.isSaved) {
-            wifi.description = "已保存";
+            wifi.description = context.getString(R.string.string_saved);
         }
         if (wifi.isConnected) {
-            wifi.description = "已连接";
+            wifi.description = context.getString(R.string.string_connected);
         }
         return wifi;
     }

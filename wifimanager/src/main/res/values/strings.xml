@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">WifiManager</string>
+    <string name="string_saved">已保存</string>
+    <string name="string_connected">已连接</string>
+    <string name="wifi_tip_1">身份验证中...</string>
+    <string name="wifi_tip_2">获取地址信息...</string>
+    <string name="wifi_tip_3">连接中断</string>
+    <string name="wifi_tip_4">断开中...</string>
+    <string name="wifi_tip_5">连接失败</string>
+    <string name="wifi_tip_6">wifi无效</string>
+    <string name="wifi_tip_7">信号差</string>
+    <string name="wifi_tip_8">强制登陆门户</string>
+    <string name="wifi_tip_9">密码错误</string>
+    <string name="wifi_tip_10">身份验证出现问题</string>
+    <string name="wifi_tip_11">开始连接...</string>
 </resources>

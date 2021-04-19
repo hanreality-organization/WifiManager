@@ -158,29 +158,29 @@ public abstract class BaseWifiManager implements IWifiManager {
                 if (state == NetworkInfo.DetailedState.IDLE) {
                 } else if (state == NetworkInfo.DetailedState.SCANNING) {
                 } else if (state == NetworkInfo.DetailedState.AUTHENTICATING) {
-                    modifyWifi(SSID, "身份验证中...");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_1));
                 } else if (state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
-                    modifyWifi(SSID, "获取地址信息...");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_2));
                 } else if (state == NetworkInfo.DetailedState.CONNECTED) {
 //                    modifyWifi(SSID, "已连接");
                     modifyWifi();
                     handler.sendEmptyMessage(WIFI_STATE_CONNECTED);
                 } else if (state == NetworkInfo.DetailedState.SUSPENDED) {
-                    modifyWifi(SSID, "连接中断");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_3));
                 } else if (state == NetworkInfo.DetailedState.DISCONNECTING) {
-                    modifyWifi(SSID, "断开中...");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_4));
                 } else if (state == NetworkInfo.DetailedState.DISCONNECTED) {
 //                    modifyWifi(SSID, "已断开");
                     modifyWifi();
                     handler.sendEmptyMessage(WIFI_STATE_UNCONNECTED);
                 } else if (state == NetworkInfo.DetailedState.FAILED) {
-                    modifyWifi(SSID, "连接失败");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_5));
                 } else if (state == NetworkInfo.DetailedState.BLOCKED) {
-                    modifyWifi(SSID, "wifi无效");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_6));
                 } else if (state == NetworkInfo.DetailedState.VERIFYING_POOR_LINK) {
-                    modifyWifi(SSID, "信号差");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_7));
                 } else if (state == NetworkInfo.DetailedState.CAPTIVE_PORTAL_CHECK) {
-                    modifyWifi(SSID, "强制登陆门户");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_8));
                 }
             } else if (action.equals(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION)) {
                 NetworkInfo info = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
@@ -191,9 +191,9 @@ public abstract class BaseWifiManager implements IWifiManager {
                 if (TextUtils.isEmpty(SSID)) return;
                 int code = intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR, -1);
                 if (code == WifiManager.ERROR_AUTHENTICATING) {
-                    modifyWifi(SSID, "密码错误");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_9));
                 } else {
-                    modifyWifi(SSID, "身份验证出现问题");
+                    modifyWifi(SSID, context.getString(R.string.wifi_tip_10));
                 }
             }
         }
@@ -208,7 +208,7 @@ public abstract class BaseWifiManager implements IWifiManager {
             String connectedSSID = manager.getConnectionInfo().getSSID();
             int ipAddress = manager.getConnectionInfo().getIpAddress();
             for (ScanResult result : results) {
-                IWifi mergeObj = Wifi.create(result, configurations, connectedSSID, ipAddress);
+                IWifi mergeObj = Wifi.create(context, result, configurations, connectedSSID, ipAddress);
                 if (mergeObj == null) continue;
                 mergeList.add(mergeObj);
             }

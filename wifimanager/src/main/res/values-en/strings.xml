@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WifiManager</string>
+    <string name="string_saved">saved</string>
+    <string name="string_connected">connected</string>
+    <string name="wifi_tip_1">Authentication...</string>
+    <string name="wifi_tip_2">Get address information...</string>
+    <string name="wifi_tip_3">Connect Interrupt</string>
+    <string name="wifi_tip_4">Disconnect...</string>
+    <string name="wifi_tip_5">Connect Fail</string>
+    <string name="wifi_tip_6">Wifi is invalid</string>
+    <string name="wifi_tip_7">The signal is poor</string>
+    <string name="wifi_tip_8">Forced Login Portal</string>
+    <string name="wifi_tip_9">Password Error</string>
+    <string name="wifi_tip_10">There was an authentication problem</string>
+    <string name="wifi_tip_11">Start Connecting...</string>
+</resources>
